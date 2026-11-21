@@ -1,39 +1,80 @@
 <!doctype html>
-<html lang="en-IN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#163f35">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
-  <meta name="description" content="The public launch page for SalahSetu, an India-first tax and legal guidance prototype.">
-  <title>SalahSetu — Tax aur kanoon, ab aasaan.</title>
-  <style>
-    :root{font:100%/1.6 system-ui,sans-serif;color:#193e33;background:#f8f7f1}
-    *{box-sizing:border-box}body{margin:0}main{max-width:48rem;margin:auto;padding:clamp(2rem,7vw,5rem) 1.4rem}
-    header{border-bottom:1px solid #c9d6cb;padding-bottom:1rem;font:700 1.8rem Georgia,serif}
-    .eyebrow{margin-top:3rem;color:#486651;font-size:.75rem;letter-spacing:.13em;font-weight:700}
-    h1{font:500 clamp(2.8rem,8vw,5rem)/1.05 Georgia,serif;letter-spacing:-.04em;margin:.6rem 0 1.2rem}
-    h1 em{color:#347052}.lead{max-width:39rem;font-size:1.13rem}aside{background:#e8efdf;border-left:4px solid #416b52;padding:.9rem 1.2rem;margin:2rem 0}aside p{margin:.25rem 0}
-    h2{font:500 1.45rem Georgia,serif;margin:1.7rem 0 .4rem}ul{padding-left:1.25rem}li{margin:.5rem 0}
-    a{color:#175443;text-underline-offset:3px}a:focus-visible{outline:2px solid #9a652e;outline-offset:3px}
-    footer{margin-top:2rem;font-size:.85rem;color:#476354}
-  </style>
-</head>
-<body><main>
-  <header>SalahSetu.</header>
-  <p class="eyebrow">INDIA &nbsp;/&nbsp; TAX &amp; LEGAL GUIDANCE</p>
-  <h1 lang="hi-Latn">Tax aur kanoon,<br><em>ab aasaan.</em></h1>
-  <p class="lead">One place to understand a tax or legal question and find out whether to speak to a chartered accountant, an advocate, or both.</p>
-  <aside><p><strong>Public app not connected yet.</strong></p>
-    <p>This is the permanent launch address. The working prototype and its cases are private. This page does not accept questions, open cases or book consultations.</p>
-  </aside>
-  <h2>Need help in the meantime?</h2>
-  <ul>
-    <li><a href="https://www.incometax.gov.in/iec/foportal/help">Income Tax Department help</a> — filing guides and official services.</li>
-    <li><a href="https://www.incometax.gov.in/iec/foportal/help/respond-to-e-proceedings">Income-tax e-Proceedings guide</a> — check a notice through the official portal. Do not wait for this demo if a deadline is approaching.</li>
-    <li><a href="https://consumerhelpline.gov.in/public/">National Consumer Helpline</a> or <a href="https://nalsa.gov.in/">NALSA legal aid</a> — explore public help before paying for a consultation.</li>
-  </ul>
-  <footer>Independent prototype. Not a government service.</footer>
-</main></body>
-</html>
+<html lang="en-IN"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer"><meta name="theme-color" content="#163f35">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="description" content="Private tax and legal guidance in Hindi, Hinglish or English. Compare salary-tax regimes and prepare for a CA or advocate.">
+<title>SalahSetu — Tax aur kanoon, ab aasaan.</title>
+<link rel="icon" href="./mark.svg"><link rel="stylesheet" href="./style.css"><script type="module" src="./public-ui.js"></script>
+</head><body>
+<a href="#main" class="skip">Skip to content</a>
+<header class="mast"><div class="wrap mast-inner">
+  <a class="brand" href="#home"><img src="./mark.svg" alt="" width="42" height="42">SalahSetu.</a>
+  <nav aria-label="Main"><a href="#home">Ask a question</a><a href="#tax">Compare tax</a><a href="#case-desk">Case desk</a></nav>
+  <span class="preview"><i></i>Public demo</span>
+</div></header>
+<main id="main" tabindex="-1">
+<noscript><p class="wrap">Enable JavaScript for on-device guidance and calculations. The official help links below work without JavaScript.</p></noscript>
+<section class="hero" id="home"><div class="wrap hero-grid">
+  <div class="hero-copy"><div class="kicker on-dark"><span class="rule"></span> A TAX &amp; LEGAL COMPANION FOR INDIA</div>
+    <h1 lang="hi-Latn">Tax aur kanoon,<br><em>ab aasaan.</em></h1>
+    <p class="lead">Start with your question, not a list of lawyers. See what to check, where to find official guidance and when a CA or advocate may help.</p>
+    <div class="hero-notes"><span>₹0 first guidance</span><b>·</b><span>No sign-up</span><b>·</b><span>Runs in your browser</span></div>
+  </div>
+  <form class="question-card" id="ask" autocomplete="off">
+    <div class="card-eyebrow"><span class="assistant-mark" aria-hidden="true">✦</span><span class="kicker">THE GUIDANCE DESK</span></div>
+    <h2><label for="q">Aapka sawaal kya hai?</label></h2>
+    <p>Hindi, Hinglish or English. Leave out personal IDs and documents.</p>
+    <textarea id="q" rows="3" required minlength="5" maxlength="700" placeholder="Jaise: Salary ke saath freelance income hai. Tax kaise plan karun?"></textarea>
+    <div class="ask-foot"><label>Reply in <select id="lang"><option value="mix">Hinglish</option><option value="hi">हिन्दी</option><option value="en">English</option></select></label>
+      <button class="primary" id="submit-guide" disabled>Get guidance ↗</button></div>
+    <small>Your question stays on this device. The guide matcher does not send it to an AI service or save it as a case.</small>
+    <p id="guide-error" class="error" role="alert"></p>
+  </form>
+</div></section>
+<section class="wrap inner" id="answer" hidden tabindex="-1" aria-labelledby="answer-title">
+  <div class="kicker">01 / YOUR GUIDE</div><h2 id="answer-title"></h2><p class="intro" id="reason"></p>
+  <div class="columns"><div class="panel"><div class="kicker">NEXT STEPS</div><ol class="steps" id="steps"></ol>
+    <p class="prompt" id="follow"></p><div class="links" id="sources"></div>
+    <div id="choose" hidden><label>Choose a starting point<select id="topic"></select></label></div>
+    <div class="fields" id="facts">
+      <label>Financial year<select id="year"><option value="unknown">Not sure</option><option>2025-26</option><option>2026-27</option><option value="other">Another year</option></select></label>
+      <label>Income type<select id="income"><option value="unknown">Not sure</option><option value="salary">Salary only</option><option value="business">Freelance / business</option><option value="mixed">Salary + business</option><option value="other">Other income</option></select></label>
+    </div><button id="refine" class="secondary" type="button">Update guide</button> <a id="to-tax" class="text-btn" href="#tax" hidden>Compare my tax →</a>
+    <small>General information from a curated library. No filing, deadline calculation or individual professional opinion.</small>
+  </div><aside class="panel quote" id="role-box"><div class="kicker">IF YOU NEED A PROFESSIONAL</div>
+    <h2 id="role"></h2><p id="scope"></p><span class="tag">Illustrative only · no payment</span>
+    <p class="small">Take the checklist and official links to a professional of your choice. No briefing or booking happens without you.</p>
+    <button id="save" class="secondary" type="button">Download my checklist ↓</button><small>No original question or salary figure is included.</small>
+  </aside></div>
+</section>
+<section class="wrap library" aria-labelledby="examples-title">
+  <div class="kicker"><span class="rule"></span> THE STARTING POINTS</div>
+  <div class="section-title"><h2 id="examples-title">Not sure what to ask?</h2><p>Choose an example and make it your own.</p></div>
+  <div class="tiles">
+    <button class="tile" data-example="salary"><span class="tile-icon mint">₹</span><strong>Salary &amp; tax savings</strong><span>Compare your options before claiming a deduction.</span><b>Try this question ↗</b></button>
+    <button class="tile" data-example="notice"><span class="tile-icon sand">§</span><strong>A notice has arrived</strong><span>Find the right portal and prepare for review.</span><b>Try this question ↗</b></button>
+    <button class="tile" data-example="consumer"><span class="tile-icon lilac">↺</span><strong>A refund or dispute</strong><span>Check a free route first.</span><b>Try this question ↗</b></button>
+  </div>
+</section>
+<section class="wrap inner" id="tax" aria-labelledby="tax-title">
+  <div class="kicker"><span class="rule"></span> THE REGIME COMPARISON</div><h2 id="tax-title">See both tax totals.</h2>
+  <p class="intro">For <strong>FY 2025–26 (AY 2026–27)</strong> only. Annual salary-tax liability, not a tax refund or a recommendation to switch.</p>
+  <div class="columns"><form class="panel" id="calc" autocomplete="off"><div class="kicker">YOUR ASSUMPTIONS</div><h2>Annual amounts in ₹</h2>
+    <label>Gross salary before exemptions and standard deduction, not CTC<input id="salary" type="number" min="1" max="5000000" step="1" required></label>
+    <label>Eligible old-regime reductions, excluding standard deduction<input id="deductions" type="number" min="0" max="5000000" step="1" value="0" required></label>
+    <label class="check"><input id="eligible" type="checkbox" required> I am modelling a resident individual under 60 with only ordinary salary up to ₹50 lakh, no special-rate income, other new-regime deductions, relief or tax credits, for FY 2025–26.</label>
+    <div class="buttons"><button id="submit-calc" class="primary" disabled>Compare regimes →</button><button type="button" class="text-btn" id="sample">Use sample figures</button></div>
+    <small>Amounts stay on this device and are never saved by this site.</small><p class="error" id="calc-error" role="alert"></p>
+  </form><div class="panel tax-result" aria-live="polite"><div class="kicker">OLD VS NEW</div><h2 id="comparison">Your comparison</h2>
+    <div id="totals">Enter amounts and confirm the assumptions to see the breakdown.</div>
+    <div class="links"><a href="https://www.incometax.gov.in/iec/foportal/help/individual/return-applicable-1" target="_blank" rel="noopener noreferrer">Income Tax Department · AY 2026–27 ↗</a></div>
+    <small>Check eligibility and the right to elect a regime separately.</small></div></div>
+</section>
+<section class="wrap inner" id="case-desk"><div class="panel"><div class="kicker">CASE DESK / AVAILABILITY</div>
+  <h2>Shared cases are not open on this site yet.</h2><p>The guidance and calculator above work now. This public site does not collect case messages, accept payments or connect you to an on-call professional.</p>
+  <div class="links"><a href="https://www.incometax.gov.in/iec/foportal/help/respond-to-e-proceedings">Income-tax notice help ↗</a><a href="https://consumerhelpline.gov.in/public/">Consumer Helpline ↗</a><a href="https://nalsa.gov.in/">Legal aid ↗</a></div>
+  <small>If you have an actual deadline, contact the issuing authority or a qualified professional directly.</small></div>
+</section>
+</main><footer><div class="foot wrap"><span class="brand foot-brand">SalahSetu.</span><span>Independent prototype · Not a government service</span><a href="#home">Back to top ↑</a></div></footer>
+</body></html>
